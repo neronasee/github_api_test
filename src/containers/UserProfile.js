@@ -3,38 +3,30 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loadProfile} from '../actions/profile';
+import ProfileInfo from '../components/profile/ProfileInfo';
 
 class UserProfile extends PureComponent {
   componentDidMount() {
-    this.props.loadProfile();
+    this.props.loadProfile(this.props.params.username);
   }
+
+  renderProfile() {
+    const { fetching, data, err } = this.props.profile;
+    if (fetching || !data) {
+      return <h2 className='text-center'>Loading...</h2>
+    } else if (err) {
+      return <h2 className='text-center'>{this.props.profile.err}</h2>
+    } else {
+      
+      return <ProfileInfo data={data}/>
+    }
+  }
+
   render() {
-    const {
-      name, 
-      followers, 
-      following, 
-      created_at, 
-      company, 
-      email, 
-      location, 
-      blog, 
-      bio
-    } = this.props.profile;
-    
     return(
       <div>
         <Link to="/" className="btn btn-danger">Back</Link>
-        <div>
-          {name}
-          {followers}
-          {following}
-          {created_at}
-          {company}
-          {email}
-          {location}
-          {blog}
-          {bio}
-        </div>
+        {this.renderProfile()}
       </div>
     )
   }

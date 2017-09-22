@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Header from './components/Header';
-import UsersList from './containers/UsersList';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';

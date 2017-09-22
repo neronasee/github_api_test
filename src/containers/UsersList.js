@@ -10,7 +10,12 @@ class UsersList extends Component {
   constructor() {
     super();
 
+    this.state = {
+      offset: 50,
+    }
+
     this.handleUserClick = this.handleUserClick.bind(this);
+    this.loadMore = this.loadMore.bind(this);
   }
   componentDidMount() {
     this.props.loadUsers();
@@ -22,7 +27,7 @@ class UsersList extends Component {
 
   renderUsers() {
     const {fetching, list, err} = this.props.users;
-    
+
     if (fetching) {
       return <h2 className='text-center'>Loading...</h2>
     } else if (err) {
@@ -34,13 +39,26 @@ class UsersList extends Component {
     });
   }
 
+  loadMore() {
+    this.props.loadUsers(this.state.offset);
+    console.log(this.state)
+    this.setState((prevState) => {
+      return {offset: prevState.offset + 50};
+    });
+  }
+
   render() {
     return (
       <div>
         <h2 className="text-center">Users list</h2>
+
         <ul className="list-group">
           {this.renderUsers()}
         </ul>
+
+        <div className="text-center">
+          <button onClick={this.loadMore} className="btn btn-success">Load More</button>
+        </div>
       </div>
     )
   }

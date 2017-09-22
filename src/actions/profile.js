@@ -15,13 +15,14 @@ export const loadProfile = (username) => (dispatch) => {
 
   axios.get(`${ROOT_USERS_URL}/${username}`)
     .then((response) => {
-      console.log(response);
       dispatch({
         type: FETCH_PROFILE_SUCCESS,
         payload: response.data,
       })
     })
     .catch((error) => {
-      type: FETCH_PROFILE_ERROR
+      dispatch({
+        type: FETCH_PROFILE_ERROR
+      })
     });
 };
