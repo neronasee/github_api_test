@@ -4,7 +4,6 @@ import {
   FETCH_PROFILE_ERROR,
 } from '../consts/userConsts';
 import axios from 'axios';
-// TODO: refactor with passsing params (how much users)
 
 const ROOT_USERS_URL = 'https://api.github.com/users';
 

@@ -43,5 +43,3 @@ const mapDispatchToProps = (dispatch) => {
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
-
-// TODO: take username from url

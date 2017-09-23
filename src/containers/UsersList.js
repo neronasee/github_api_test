@@ -41,7 +41,6 @@ class UsersList extends Component {
 
   loadMore() {
     this.props.loadUsers(this.state.offset);
-    console.log(this.state)
     this.setState((prevState) => {
       return {offset: prevState.offset + 50};
     });
@@ -57,7 +56,7 @@ class UsersList extends Component {
         </ul>
 
         <div className="text-center">
-          <button onClick={this.loadMore} className="btn btn-success">Load More</button>
+          <button onClick={this.loadMore} className="btn btn-success">Load next page</button>
         </div>
       </div>
     )
